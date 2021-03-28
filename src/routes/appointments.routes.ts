@@ -12,6 +12,7 @@ const appointmentsRouter = Router();
 appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.get("/", async (request, response) => {
+  console.log("sub");
   const appointmentRepository = getCustomRepository(AppointmentsRepository);
   const appointments = await appointmentRepository.find();
 

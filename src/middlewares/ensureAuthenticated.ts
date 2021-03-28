@@ -26,7 +26,7 @@ export default function ensureAuthenticated(
     const decoded = verify(token, authConfig.jwt.secret);
 
     const { sub } = decoded as TokenPayload;
-
+    console.log(sub);
     request.user = {
         id: sub,
     }
