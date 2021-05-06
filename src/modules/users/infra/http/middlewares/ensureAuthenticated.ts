@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-import authConfig from "../config/auth";
-import AppError from '../errors/AppError';
+import authConfig from "@config/auth";
+import AppError from "@shared/errors/AppError";
 
 interface TokenPayload {
   iat: number;
@@ -28,8 +28,8 @@ export default function ensureAuthenticated(
     const { sub } = decoded as TokenPayload;
     console.log(sub);
     request.user = {
-        id: sub,
-    }
+      id: sub,
+    };
 
     return next();
   } catch {

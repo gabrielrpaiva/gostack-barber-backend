@@ -1,11 +1,10 @@
 import { response } from "express";
 import { getRepository } from "typeorm";
-import User from "../models/User";
-import Appointment from "../models/Appointment";
+import User from "@modules/users/infra/typeorm/entities/User";
 import { hash, compare } from "bcryptjs";
 import { sign, verify } from "jsonwebtoken";
-import authConfig from "../config/auth";
-import AppError from '../errors/AppError';
+import authConfig from "@config/auth";
+import AppError from "@shared/errors/AppError";
 
 interface Request {
   email: string;
