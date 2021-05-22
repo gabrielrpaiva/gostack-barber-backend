@@ -5,7 +5,7 @@ import fs from "fs";
 import AppError from "@shared/errors/AppError";
 import IUsersRepository from "../repositories/IUsersRepository";
 import { inject, injectable } from "tsyringe";
-import IStoregeProvider from "@shared/providers/StorageProvider/models/IStoregeProvider";
+import IStoregeProvider from "@shared/container/providers/StorageProvider/models/IStoregeProvider";
 
 interface Request {
   user_id: string;
