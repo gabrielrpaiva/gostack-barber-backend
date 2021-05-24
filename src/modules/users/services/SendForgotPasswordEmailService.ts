@@ -1,3 +1,4 @@
+import path from "path";
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
 import User from "@modules/users/infra/typeorm/entities/User";
 import AppError from "@shared/errors/AppError";
@@ -31,6 +32,12 @@ class SendForgotPasswordEmailService {
 
     const { token } = await this.userTokenRepository.generate(user.id);
 
+    const forgotPasswordTemplate = path.resolve(
+      __dirname,
+      "../views",
+      "forgot_password.hbs"
+    );
+
     await this.mailProvider.sendEmail({
       to: {
         name: user.name,
@@ -38,10 +45,10 @@ class SendForgotPasswordEmailService {
       },
       subject: "[GoBarber] Recuperação de senha",
       templateData: {
-        template: "Olá, {{name}}: {{token}}",
+        file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          token,
+          link: `http://localhost:3300/reset_password?token=${token}`,
         },
       },
     });
